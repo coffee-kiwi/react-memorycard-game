@@ -1,12 +1,21 @@
 import { useState } from 'react'
 import './App.css'
+import Scoreboard from './components/Scoreboard.jsx';
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
+      <header style={{ backgroundColor: "darkslategrey"}}>
+        <h1>Something Memory Card Game</h1>
+        <p>Get points by clicking on an image but don't click on the same image more than once!</p>
+        <Scoreboard/>
+      </header>
 
+      <main>
+
+      </main>
 
       {/* <section id="center">
         <div className="hero">
