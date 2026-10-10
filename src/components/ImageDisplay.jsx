@@ -5,9 +5,6 @@ const images = import.meta.glob('../assets/images/*.png', {
     query: '?url',
     import: 'default'
 });
-console.log(images);
-console.log(Object.keys(images));
-console.log(Object.values(images));
 
 function shuffleOrder(cards) {
     const newArray = [...cards];
