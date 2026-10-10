@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Scoreboard from './components/Scoreboard.jsx';
+import ImageDisplay from './components/ImageDisplay.jsx';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -14,7 +15,7 @@ function App() {
       </header>
 
       <main>
-
+        <ImageDisplay/>
       </main>
 
       {/* <section id="center">
