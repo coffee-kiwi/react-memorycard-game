@@ -10,11 +10,31 @@ console.log(Object.keys(images));
 console.log(Object.values(images));
 
 function shuffleOrder(cards) {
-    return shuffledArray(cards);
+    const newArray = [...cards];
+
+    for (let i = newArray.length - 1; i > 0; i-- ) {
+            const j= Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+
+    return newArray;
 }
 
+    function DisplayCards({ cards, onShuffle }) {
+       return cards.map((card) => {
+            return (
+                <ImageCard
+                    key={card.id}
+                    id={card.id}
+                    imgurl={card.imgurl}
+                    onClick={onShuffle}
+                />
+            )
+        });
+    }
+
 export default function ImageDisplay() {
-    const cards = [
+    const initialCards = [
         {id: 1, imgurl: images['../assets/images/poke1.png']},    
         {id: 2, imgurl: images['../assets/images/poke2.png']},
         {id: 3, imgurl: images['../assets/images/poke3.png']},
@@ -28,24 +48,18 @@ export default function ImageDisplay() {
         {id: 11, imgurl: images['../assets/images/poke11.png']},
         {id: 12, imgurl: images['../assets/images/poke12.png']},
     ];
-
-    function DisplayCards({ cardArray }) {
-       return cardArray.map((card) => {
-            return (
-                <ImageCard
-                    key={card.id}
-                    id={card.id}
-                    imgurl={card.imgurl}
-                />
-            )
-        });
-    }
+    const [cards, setCards] = useState(initialCards);
     
+    function handleShuffle() {
+        setCards(previousCards => shuffleOrder(previousCards));
+    }
+
     return (
         <div>
         <p>test image display</p>
         <DisplayCards
-            cardArray={cards}
+            cards={cards}
+            onShuffle={handleShuffle}
         />
         </div>
     );

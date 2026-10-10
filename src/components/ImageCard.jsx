@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
-export default function ImageCard({id, imgurl}) {
+export default function ImageCard({id, imgurl, onClick}) {
 
     return (
-            <button><img src={imgurl} alt="Image of pokemon" /></button>
+            <button onClick={onClick}>
+                <img src={imgurl} alt="Image of pokemon" />
+            </button>
     );
 }
