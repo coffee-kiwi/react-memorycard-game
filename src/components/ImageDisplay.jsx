@@ -73,15 +73,14 @@ export default function ImageDisplay({ score, setScore, bestScore, setBestScore 
     }
 
     return (
-        <div>
-        <p>test image display</p>
-        <DisplayCards
-            cards={cards}
-            // onShuffle={handleShuffle}
-            // setScore={setScore}
-            // setBestScore={setBestScore}
-            handleCardClick={handleCardClick}
-        />
+        <div className="cardDisplay">
+            <DisplayCards
+                cards={cards}
+                // onShuffle={handleShuffle}
+                // setScore={setScore}
+                // setBestScore={setBestScore}
+                handleCardClick={handleCardClick}
+            />
         </div>
     );
 }
