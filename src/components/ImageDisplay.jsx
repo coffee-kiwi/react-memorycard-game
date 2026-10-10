@@ -8,6 +8,7 @@ const images = import.meta.glob('../assets/images/*.png', {
 
 function shuffleOrder(cards) {
     const newArray = [...cards];
+    const count = 0;
 
     for (let i = newArray.length - 1; i > 0; i-- ) {
             const j= Math.floor(Math.random() * (i + 1));
@@ -17,20 +18,20 @@ function shuffleOrder(cards) {
     return newArray;
 }
 
-    function DisplayCards({ cards, onShuffle }) {
-       return cards.map((card) => {
-            return (
-                <ImageCard
-                    key={card.id}
-                    id={card.id}
-                    imgurl={card.imgurl}
-                    onClick={onShuffle}
-                />
-            )
-        });
-    }
+function DisplayCards({cards, handleCardClick }) {
+    return cards.map((card) => {
+        return (
+            <ImageCard
+                key={card.id}
+                id={card.id}
+                imgurl={card.imgurl}
+                onClick={() => handleCardClick(card.id)}
+            />
+        )
+    });
+}
 
-export default function ImageDisplay() {
+export default function ImageDisplay({ score, setScore, bestScore, setBestScore }) {
     const initialCards = [
         {id: 1, imgurl: images['../assets/images/poke1.png']},    
         {id: 2, imgurl: images['../assets/images/poke2.png']},
@@ -46,9 +47,29 @@ export default function ImageDisplay() {
         {id: 12, imgurl: images['../assets/images/poke12.png']},
     ];
     const [cards, setCards] = useState(initialCards);
+    const [clickedCards, setClickedCards] = useState([]);
     
     function handleShuffle() {
         setCards(previousCards => shuffleOrder(previousCards));
+    }
+
+    function handleCardClick(clickedCardId) {
+        if (clickedCards.includes(clickedCardId)) {
+            // Reset game
+            console.log(clickedCards);
+            console.log(`Card ${clickedCardId} was clicked, so game is over`)
+            setClickedCards([]);
+            if (score > bestScore) {
+                setBestScore(score);
+            }
+            setScore(0);
+        } else {
+            // Continue game
+            console.log(`The card with ${clickedCardId} was clicked!`)
+            setScore(previousScore => previousScore + 1);
+            setClickedCards(previousCards => [...previousCards, clickedCardId]);
+        }
+        handleShuffle();
     }
 
     return (
@@ -56,7 +77,10 @@ export default function ImageDisplay() {
         <p>test image display</p>
         <DisplayCards
             cards={cards}
-            onShuffle={handleShuffle}
+            // onShuffle={handleShuffle}
+            // setScore={setScore}
+            // setBestScore={setBestScore}
+            handleCardClick={handleCardClick}
         />
         </div>
     );

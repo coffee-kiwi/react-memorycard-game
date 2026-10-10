@@ -4,18 +4,27 @@ import Scoreboard from './components/Scoreboard.jsx';
 import ImageDisplay from './components/ImageDisplay.jsx';
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   return (
     <>
       <header style={{ backgroundColor: "darkslategrey"}}>
         <h1>Something Memory Card Game</h1>
         <p>Get points by clicking on an image but don't click on the same image more than once!</p>
-        <Scoreboard/>
+        <Scoreboard
+          score={score}
+          bestScore={bestScore}
+        />
       </header>
 
       <main>
-        <ImageDisplay/>
+        <ImageDisplay
+          score={score}
+          setScore={setScore}
+          bestScore={bestScore}
+          setBestScore={setBestScore}
+        />
       </main>
 
       {/* <section id="center">
