@@ -18,11 +18,12 @@ function shuffleOrder(cards) {
     return newArray;
 }
 
-function DisplayCards({cards, handleCardClick }) {
+function DisplayCards({cards, handleCardClick, disabled }) {
     return cards.map((card) => {
         return (
             <ImageCard
                 key={card.id}
+                disabled={disabled}
                 id={card.id}
                 imgurl={card.imgurl}
                 onClick={() => handleCardClick(card.id)}
@@ -31,7 +32,7 @@ function DisplayCards({cards, handleCardClick }) {
     });
 }
 
-export default function ImageDisplay({ score, setScore, bestScore, setBestScore }) {
+export default function ImageDisplay({ score, setScore, bestScore, setBestScore, disabled, setDisabled }) {
     const initialCards = [
         {id: 1, imgurl: images['../assets/images/poke1.png']},    
         {id: 2, imgurl: images['../assets/images/poke2.png']},
@@ -54,7 +55,12 @@ export default function ImageDisplay({ score, setScore, bestScore, setBestScore 
     }
 
     function handleCardClick(clickedCardId) {
-        if (clickedCards.includes(clickedCardId)) {
+        if (score >= 11) {
+            // Winner!
+            setScore(12);
+            setBestScore(12);
+            setDisabled(true);
+        } else if (clickedCards.includes(clickedCardId)) {
             // Reset game
             console.log(clickedCards);
             console.log(`Card ${clickedCardId} was clicked, so game is over`)
@@ -62,7 +68,7 @@ export default function ImageDisplay({ score, setScore, bestScore, setBestScore 
             if (score > bestScore) {
                 setBestScore(score);
             }
-            setScore(0);
+            setScore(0); 
         } else {
             // Continue game
             console.log(`The card with ${clickedCardId} was clicked!`)
@@ -76,9 +82,6 @@ export default function ImageDisplay({ score, setScore, bestScore, setBestScore 
         <div className="cardDisplay">
             <DisplayCards
                 cards={cards}
-                // onShuffle={handleShuffle}
-                // setScore={setScore}
-                // setBestScore={setBestScore}
                 handleCardClick={handleCardClick}
             />
         </div>
