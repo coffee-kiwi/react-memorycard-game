@@ -1,3 +1,7 @@
+header {
+  padding: 8px;
+}
+
 .pokemonCardImg {
   max-width: 100%;
   height: auto;
@@ -5,7 +9,13 @@
 
 .cardDisplay {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 8px;
-  padding: 8px 0;
+  padding: 8px;
+}
+
+.winBtn {
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: large;
 }

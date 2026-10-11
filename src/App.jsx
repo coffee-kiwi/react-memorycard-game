@@ -6,16 +6,32 @@ import ImageDisplay from './components/ImageDisplay.jsx';
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [disabled, setDisabled] = useState(false);
+
 
   return (
     <>
       <header style={{ backgroundColor: "darkslategrey"}}>
-        <h1>Something Memory Card Game</h1>
+        <h1>Pokemon Memory Game</h1>
         <p>Get points by clicking on an image but don't click on the same image more than once!</p>
         <Scoreboard
           score={score}
           bestScore={bestScore}
         />
+        {disabled && (
+          <div className="gameover">
+            <h2>👑 You win! 👑</h2>
+            <button
+              className="winBtn"
+              onClick={() => {
+                setDisabled(false)
+                setScore(0)}
+              }
+            >
+              Play again?
+            </button>
+          </div>
+        )}
       </header>
 
       <main>
@@ -24,6 +40,8 @@ function App() {
           setScore={setScore}
           bestScore={bestScore}
           setBestScore={setBestScore}
+          disabled={disabled}
+          setDisabled={setDisabled}
         />
       </main>
 
