@@ -1,4 +1,48 @@
-# React + Vite
+# Pokémon Memory Game
+
+A memory card game built with React and Vite. Click each Pokémon once to score a point, and the cards shuffle after every click. Click the same Pokémon twice and your score resets. Click all 12 without repeating to win.
+
+## Installation
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 20.19+ or 22.12+ (required by Vite)
+- npm (included with Node.js)
+
+### Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/coffee-kiwi/react-memorycard-game.git
+   cd react-memorycard-game
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   Then open the local URL shown in the terminal (usually http://localhost:5173).
+
+### Other scripts
+
+| Command           | Description                                  |
+| ----------------- | -------------------------------------------- |
+| `npm run build`   | Build the app for production into `dist/`    |
+| `npm run preview` | Serve the production build locally           |
+| `npm run lint`    | Run ESLint over the project                  |
+
+---
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
