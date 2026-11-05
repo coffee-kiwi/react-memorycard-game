@@ -19,3 +19,14 @@ header {
   margin-bottom: 8px;
   font-size: large;
 }
+.auth {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.signedOutMsg {
+  text-align: center;
+  padding: 16px;
+}

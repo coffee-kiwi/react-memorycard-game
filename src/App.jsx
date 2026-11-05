@@ -1,7 +1,14 @@
 import { useState } from 'react'
+import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
 import './App.css'
 import Scoreboard from './components/Scoreboard.jsx';
 import ImageDisplay from './components/ImageDisplay.jsx';
+
+function helloWorld() {
+  console.log('Hello, world!');
+}
+
+helloWorld();
 
 function App() {
   const [score, setScore] = useState(0);
@@ -12,6 +19,15 @@ function App() {
   return (
     <>
       <header style={{ backgroundColor: "darkslategrey"}}>
+        <div className="auth">
+          <Show when="signed-out">
+            <SignInButton mode="modal" />
+            <SignUpButton mode="modal" />
+          </Show>
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
+        </div>
         <h1>Pokemon Memory Game</h1>
         <p>Get points by clicking on an image but don't click on the same image more than once!</p>
         <Scoreboard
@@ -35,14 +51,19 @@ function App() {
       </header>
 
       <main>
-        <ImageDisplay
-          score={score}
-          setScore={setScore}
-          bestScore={bestScore}
-          setBestScore={setBestScore}
-          disabled={disabled}
-          setDisabled={setDisabled}
-        />
+        <Show
+          when="signed-in"
+          fallback={<p className="signedOutMsg">Sign in to start playing!</p>}
+        >
+          <ImageDisplay
+            score={score}
+            setScore={setScore}
+            bestScore={bestScore}
+            setBestScore={setBestScore}
+            disabled={disabled}
+            setDisabled={setDisabled}
+          />
+        </Show>
       </main>
 
       {/* <section id="center">
