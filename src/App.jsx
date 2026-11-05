@@ -4,12 +4,6 @@ import './App.css'
 import Scoreboard from './components/Scoreboard.jsx';
 import ImageDisplay from './components/ImageDisplay.jsx';
 
-function helloWorld() {
-  console.log('Hello, world!');
-}
-
-helloWorld();
-
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
